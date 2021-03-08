@@ -8,11 +8,10 @@
 >
 
 >Creating an input file named `input` containing images.
->
+
 
 ## Road map for predicting vehicle color:
->First step: Mount your google colab drive by using below instructions:
->
+> First step: Mount your google colab drive by using below instructions:
 ```
 from google.colab import drive
 drive.mount('/content/drive/')
@@ -20,5 +19,41 @@ import os
 os.chdir("/content/drive/MyDrive/train python/IMAGE-AI")
 !ls
 ```
+> Second step: Install requirements in google colab
+```
+!pip install -r requirements.txt
+```
 
->Second step: 
+> Third step: Importing necessary libraries
+```
+from keras.models import load_model
+from keras.preprocessing import image
+import numpy as np
+```
+> Fourth Step: Identifying input size and defining list of colors
+
+```
+img_width, img_height = 224, 224
+CATEGORIES=['beige','black','blue', 'brown', 'gray' ,'green', 'orange','red', 'silver', 'white','yellow']
+```
+
+> Fifth step: load model weights
+```
+model = load_model('C:/Users/payagostar/Desktop/color_model.h5')
+
+```
+
+> Last step: after builing input image file, run the below instructions:
+```
+path="/content/drive/MyDrive/train python/IMAGE-AI/input"
+x=os.listdir(path)
+print(x)
+for img in x:
+  test_image = image.load_img(os.path.join(path,img), target_size=(img_width, img_height,3))
+  test_image = image.img_to_array(test_image)
+  test_image = np.expand_dims(test_image, axis=0)
+  test_image = test_image.reshape(1,img_width, img_height,3)
+  result = model.predict_classes(test_image, batch_size=1)
+  print("this car in "+img+"is:", CATEGORIES[result[0]])
+  print("---------------------")
+```
