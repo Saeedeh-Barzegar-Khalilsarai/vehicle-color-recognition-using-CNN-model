@@ -59,3 +59,6 @@ for img in x:
 ```
 
 ## Result 
+
+![Capture1](https://user-images.githubusercontent.com/77263576/110308409-50036380-8015-11eb-858d-ded63f35b59c.PNG)
+
