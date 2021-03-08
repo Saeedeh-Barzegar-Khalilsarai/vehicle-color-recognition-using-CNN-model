@@ -57,3 +57,5 @@ for img in x:
   print("this car in "+img+"is:", CATEGORIES[result[0]])
   print("---------------------")
 ```
+
+## Result 
